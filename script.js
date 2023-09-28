@@ -1,4 +1,5 @@
-import * as THREE from 'https://unpkg.com/three@0.156.1/build/three.module.js';
+import * as THREE from 'three';
+import gsap from 'gsap';
 
 //Canvas
 const canvas = document.querySelector('.webgl')
@@ -30,25 +31,41 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setSize(sizes.width, sizes.height)
 
-//Time
+// //Time
 
-let time = Date.now()
+// let time = Date.now()
 
-//Animations
+// //Animations
+
+// const tick = () =>
+// {
+//     //Time
+//     const currentTime = Date.now()
+//     const deltaTime = currentTime - time
+//     time = currentTime
+
+//     //Update objects
+//     mesh.rotation.y += 0.001 * deltaTime
+
+//     //Render
+    // renderer.render(scene, camera)
+
+//     window.requestAnimationFrame(tick)
+// }
+
+// tick()
+
+/**
+ * Animate gsap
+ */
+gsap.to(mesh.position, { duration: 1, delay: 1, x: 2 })
 
 const tick = () =>
 {
-    //Time
-    const currentTime = Date.now()
-    const deltaTime = currentTime - time
-    time = currentTime
-
-    //Update objects
-    mesh.rotation.y += 0.001 * deltaTime
-
-    //Render
+    // Render
     renderer.render(scene, camera)
 
+    // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
 
